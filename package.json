@@ -2,6 +2,10 @@
   "name": "api",
   "version": "1.0.0",
   "description": "",
+  "engines" : {
+    "npm" : ">=8.4.0",
+    "node" : ">=18.3.0"
+  },
   "main": "",
   "scripts": {
     "test": "mocha",
