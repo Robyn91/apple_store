@@ -13,10 +13,10 @@ This app was created using React for front end and Express for back end.
 3. Then you need to navigate to /api and type 'node api.js' in the cmd line to start the back end server.
 4. Lastly you need to type 'npm start' in /apple_store to start the react app.
 
-## Security
+## Deployment
 
-This app makes use of Helmet for security.
-
+This app is currently deployed to Heroku:
+https://robyn91itunesapp.herokuapp.com/
 
 
 
