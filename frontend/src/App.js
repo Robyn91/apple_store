@@ -33,7 +33,7 @@ function App() {
             for (let i = 0; i < isChecked.length; i++) {
                 let item = JSON.stringify(isChecked[i]);
                 let newItem = item.replaceAll("\"", "");
-                let res = await axios(`http://localhost:8080?term=${searchTerm}&media=${newItem}`);
+                let res = await axios(`/api?term=${searchTerm}&media=${newItem}`);
                 allData.push(res.data.results)
             }
             await setSearchResult(allData)

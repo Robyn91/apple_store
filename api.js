@@ -8,10 +8,8 @@ app.use(helmet());
 app.use(cors());
 app.use(express.json());
 
-app.use(express.static(path.join(__dirname,'frontend/build')));
-
 // Create CORS Proxy Server
-app.get('/', (req, res) => {
+app.get('/api', (req, res) => {
     fetch(`https://itunes.apple.com/search?term=${req.query.term}&media=${req.query.media}`)
         .then(r => r.json())
         .then(data => {
@@ -71,17 +69,19 @@ app.delete('/favorites', (req, res) => {
     });
 })
 
+// Deployment
+const __dirname1 = path.resolve();
+
 if (process.env.NODE_ENV === 'production'){
-    app.use(express.static(path.join(__dirname, 'frontend/build')));
-    app.get('*',(req,res)=> {res.sendFile(path.resolve(__dirname,
+    app.use(express.static(path.join(__dirname1, 'frontend/build')));
+    app.get('*',(req,res)=> {res.sendFile(path.resolve(__dirname1,
         'frontend', 'build','index.html'));
     });
+} else {
+    app.get('/', (req, res) => {
+        res.send('API is running successfully')
+    })
 }
-
-// AFTER defining routes: Anything that doesn't match what's above, send back index.html; (the beginning slash ('/') in the string is important!)
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname + '/../frontend/build/index.html'))
-})
 
 // Listen
 const PORT = process.env.PORT || 8080;
